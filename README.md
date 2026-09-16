@@ -3,6 +3,7 @@
 An interactive Streamlit dashboard for exploring household electricity usage and estimating daily energy consumption from household, weather, air-conditioning, peak-usage, and calendar inputs.
 
 The project combines a trained scikit-learn/XGBoost-compatible model with a practical dashboard so users can inspect the historical dataset, understand consumption patterns, enter a household profile, and receive an immediate prediction in kWh.
+Streamlit live URL::https://household-energy-consumption-forcasting-nxeengvhxw7tpcpfnztn6n.streamlit.app/
 
 ## Project Overview
 
