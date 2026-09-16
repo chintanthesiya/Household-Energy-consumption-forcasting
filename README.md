@@ -187,4 +187,4 @@ This application is an estimation tool based on historical data. Predictions sho
 
 ## License
 
-No license has been specified for this repository yet.
+BreinyBeam technologies pvt.ltd. under project to impliment it.
