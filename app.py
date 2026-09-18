@@ -61,8 +61,9 @@ st.markdown("""
     [data-testid="stDecoration"] {
         display: none !important;
     }
-    .stAppViewContainer .main .block-container {
-        padding-top: 1.5rem;
+    .stAppViewContainer .main .block-container,
+    [data-testid="stMainBlockContainer"] {
+        padding-top: 0.25rem;
     }
 
     .project-header {
