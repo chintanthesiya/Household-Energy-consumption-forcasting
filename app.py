@@ -54,12 +54,25 @@ st.markdown("""
 <style>
     .stApp { background-color: #0e1117; }
 
+    /* Keep the app chrome focused on the dashboard instead of Streamlit's
+       default header, toolbar, and deployment controls. */
+    [data-testid="stHeader"],
+    [data-testid="stToolbar"],
+    [data-testid="stDecoration"] {
+        display: none !important;
+    }
+    .stAppViewContainer .main .block-container {
+        padding-top: 1.5rem;
+    }
+
     .project-header {
         background: linear-gradient(135deg, #172554 0%, #123c4a 55%, #14532d 100%);
         border: 1px solid #285b70;
         border-radius: 18px;
-        padding: 24px 28px;
-        margin: 0 0 24px;
+        max-width: 920px;
+        padding: 22px 28px 24px;
+        margin: 0 auto 24px;
+        text-align: center;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
     }
     .project-header h1 {
