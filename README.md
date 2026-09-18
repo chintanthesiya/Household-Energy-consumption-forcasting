@@ -39,13 +39,14 @@ The dashboard loads `household_energy_consumption.csv` and presents:
 
 Users can provide the same household and calendar information used by the model:
 
-1. Select a household ID for reference.
-2. Choose household size.
-3. Select whether the home has air conditioning.
-4. Set average temperature.
-5. Set peak-hours usage.
-6. Select a prediction date.
-7. Generate the predicted daily energy consumption.
+1. Choose household size.
+2. Select whether the home has air conditioning.
+3. Set average temperature.
+4. Set peak-hours usage.
+5. Select a prediction date.
+6. Generate the predicted daily energy consumption.
+
+Household ID is not shown on the prediction page because it is not a model feature.
 
 The app automatically derives `Year`, `Month`, `Day`, `DayOfWeek`, and `IsWeekend` from the selected date.
 

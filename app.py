@@ -37,7 +37,7 @@ except ImportError:
 # PAGE CONFIG
 # ============================================================
 st.set_page_config(
-    page_title="Household Energy Consumption Predictor",
+    page_title="Household Energy Consumption Project",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -53,6 +53,36 @@ st.set_page_config(
 st.markdown("""
 <style>
     .stApp { background-color: #0e1117; }
+
+    .project-header {
+        background: linear-gradient(135deg, #172554 0%, #123c4a 55%, #14532d 100%);
+        border: 1px solid #285b70;
+        border-radius: 18px;
+        padding: 24px 28px;
+        margin: 0 0 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+    }
+    .project-header h1 {
+        color: #ffffff !important;
+        font-size: 2rem;
+        margin: 0;
+        letter-spacing: 0.2px;
+    }
+    .project-header p {
+        color: #c9e8e5 !important;
+        font-size: 1rem;
+        margin: 6px 0 0;
+    }
+
+    .about-panel {
+        background: #161b26;
+        border: 1px solid #2d3748;
+        border-radius: 14px;
+        padding: 22px 26px;
+        margin: 12px 0 20px;
+    }
+    .about-panel h3 { color: #8ee8c0 !important; margin-top: 0; }
+    .about-panel p, .about-panel li { color: #d8dee9 !important; line-height: 1.65; }
 
     /* Belt-and-braces: force readable text color on every common
        Streamlit text element, in case a browser/theme override
@@ -362,6 +392,13 @@ else:
 st.sidebar.markdown("---")
 st.sidebar.caption("Built with Streamlit · XGBoost pipeline")
 
+st.markdown("""
+<div class="project-header">
+    <h1>Household Energy Consumption Project</h1>
+    <p>Explore electricity usage patterns and estimate daily household demand with data-driven insights.</p>
+</div>
+""", unsafe_allow_html=True)
+
 # ============================================================
 # PAGE 1: DASHBOARD
 # ============================================================
@@ -520,20 +557,10 @@ elif page == "🔮 Predict Consumption":
         else:
             ac_options = seen
 
-    household_ids = None
-    if data is not None and "Household_ID" in data.columns:
-        household_ids = sorted(data["Household_ID"].dropna().unique().tolist())
-
     left, right = st.columns([1.1, 1])
 
     with left:
         st.subheader("Household Inputs")
-
-        if household_ids:
-            st.selectbox(
-                "Household ID (reference only — not used by the model)",
-                household_ids,
-            )
 
         c1, c2 = st.columns(2)
         with c1:
@@ -645,29 +672,12 @@ elif page == "🔮 Predict Consumption":
 else:
     st.title("ℹ️ About This Project")
     st.markdown("""
-    ### Household Electricity Consumption Predictor
-
-    This dashboard estimates a household's daily electricity consumption (kWh)
-    using an XGBoost-based regression pipeline trained on historical household
-    energy usage data.
-
-    **Model input features (in order):**
-    1. `Household_Size` — number of people in the household
-    2. `Avg_Temperature_C` — average daily temperature
-    3. `Has_AC` — whether the household has air conditioning (`Yes` or `No`)
-    4. `Peak_Hours_Usage_kWh` — electricity used during peak hours
-    5. `Year`, `Month`, `Day`, `DayOfWeek`, `IsWeekend` — engineered date features
-
-    **How to use:**
-    - Place `household_energy_model.pkl` **and** `household_energy_data.csv`
-      directly in the same folder as `app.py` in VS Code — the model is
-      loaded from disk only, there is no in-app model upload.
-    - Use the **Dashboard** tab to explore consumption patterns.
-    - Use the **Predict Consumption** tab to get a live prediction for a
-      specific household profile and date. Input ranges are pulled
-      automatically from your dataset so you can't enter values the
-      model never saw during training.
-
-    ---
-    Built with **Streamlit**, **Plotly**, and **XGBoost**.
-    """)
+        <div class="about-panel">
+                <h3>Smarter energy awareness, one household at a time</h3>
+                <p>This project combines historical electricity records with a trained machine-learning model to make household energy patterns easier to understand and daily consumption easier to estimate.</p>
+                <p><strong>Explore the dashboard</strong> to compare usage across household sizes, temperatures, air-conditioning adoption, and days of the week.</p>
+                <p><strong>Make a prediction</strong> using the same information the model learned from: household size, temperature, air-conditioning status, peak-hours usage, and a prediction date.</p>
+                <p><strong>Model features:</strong> Household Size · Average Temperature · Has AC · Peak Hours Usage · Year · Month · Day · Day of Week · Weekend status</p>
+                <p>Built with <strong>Streamlit</strong>, <strong>Plotly</strong>, and an <strong>XGBoost-compatible regression pipeline</strong>.</p>
+        </div>
+            """, unsafe_allow_html=True)
